@@ -29,6 +29,36 @@ create_design = function(data) {
   return(design)
 }
 
+plot_individual_blocks = function(data, classes) {
+  # do pca on individual classes before proceeding
+  names = names(data)
+
+  print("Removing 0 variance columns from data...")
+  data = lapply(data, remove_novar)
+
+  print("Showing PCA component contribution...")
+  data_pca = lapply(data, pca, ncomp=dim(classes)[1], center=TRUE, scale=TRUE)
+
+  print("Plotting PCA component contribution...")
+  # lapply(data_pca, plot, title="Screeplot")
+  mapply(function(x, y) plot(x, main=paste(y, "Screeplot")), data_pca, names)
+
+  print("Plotting PCA...")
+  # lapply(data_pca, plotIndiv, comp=c(1,2), ind.names=TRUE, group=classes,
+  #   legend=TRUE, title="PCA 1/2")
+  mapply(function(x, y) plotIndiv(x, comp=c(1,2), ind.names=TRUE, group=classes,
+    legend=TRUE, title=paste(y, "PCA 1/2")), data_pca, names)
+
+  print("Plotting correlation circle plots...")
+  # lapply(data_pca, plotVar, comp=c(1, 2), var.names=TRUE, title="PCA 1/2")
+  mapply(function(x, y) plotVar(x, comp=c(1, 2), title=paste(y, "PCA 1/2")),
+    data_pca, names)
+
+  print("Plotting biplots...")
+  mapply(function(x, y, z) biplot(y, cex=0.7, xlabs=paste(classes, 1:nrow(x)),
+    main=paste(z, "Biplot")), data, data_pca, names)
+}
+
 tune_ncomp = function(data, classes, design) {
   # First, we fit a DIABLO model without variable selection to assess the global
   # performance and choose the number of components for the final DIABLO model.
