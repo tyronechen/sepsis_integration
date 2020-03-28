@@ -4,11 +4,16 @@
 library(argparser, quietly=TRUE)
 library(mixOmics)
 
-parse_data = function(infile_path) {
+parse_data = function(infile_path, offset=0) {
   # load in omics data into a diablo-compatible format
   print("Parsing file:")
   print(infile_path)
-  return(read.table(infile_path, sep="\t", header=TRUE, row.names=1))
+  return(read.table(infile_path, sep="\t", header=TRUE, row.names=1) + offset)
+}
+
+remove_novar = function(data) {
+  # samples with zero variance are meaningless for PCA
+  return(data[, which(apply(data, 2, var) != 0)])
 }
 
 parse_classes = function(infile_path) {
