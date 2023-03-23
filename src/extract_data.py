@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import argparse
 import os
+import sys
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
@@ -13,6 +14,8 @@ def extract(data, condition, count):
     cols.append("entity_id")
     subset = data[cols]
     sample_name = subset[cols].iloc[:, 0].unique()[0]
+    if subset.shape[1] == 1:
+        return
     subset = subset.iloc[:, 1:].T.reset_index().drop("index", axis=1)
     subset.columns = subset.iloc[1].tolist()
     subset.drop(1, inplace=True)
@@ -41,10 +44,8 @@ def main():
     omics = args.omics
     outfile_dir = args.outfile_dir
 
-    if outfile_dir == "./out":
-        print("No output_dir provided, default to:", outfile_dir)
-    if not os.path.isdir(outfile_dir):
-        os.makedirs(outfile_dir)
+    i = " ".join([i for i in sys.argv[0:]])
+    print("COMMAND LINE ARGUMENTS FOR REPRODUCIBILITY:\n\n\t", i, "\n")
 
     data = pd.read_csv(infile_path, sep="\t", low_memory=False)
     data = data[
@@ -77,8 +78,20 @@ def main():
     samples = pd.concat([i for j in samples for i in j], axis=0)
     samples = samples.apply(pd.to_numeric)
 
-    print("Null value count:\n", samples.T.isna().sum())
+    if samples.T.isna().sum().sum() > 1:
+        print("Null value count:\n", samples.T.isna().sum())
     samples = samples.apply(lambda x: x.fillna(x.median()), axis=1)
+    samples.index = [int(x) for x in samples.index.tolist()]
+    
+    species = species.replace(" ", "_").replace("-", "_").replace("/", "_")
+    strain = strain.replace(" ", "_").replace("-", "_").replace("/", "_")
+    omics = omics.replace(" ", "_").replace("-", "_").replace("/", "_")
+
+    if outfile_dir == "./out":
+        outfile_dir = "_".join([species, strain, omics])
+        print("No output_dir provided, default to:", outfile_dir)
+    if not os.path.isdir(outfile_dir):
+        os.makedirs(outfile_dir)
 
     fig = samples.T.boxplot()
     fig.set_xticklabels(fig.get_xticklabels(), rotation=45)
