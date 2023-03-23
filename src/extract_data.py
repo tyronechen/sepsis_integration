@@ -57,6 +57,16 @@ def main():
         ["Species", "Strain", "Type_of_Experiment", "Units"],axis=1,inplace=True
         )
 
+    species = species.replace(" ", "_").replace("-", "_").replace("/", "_")
+    strain = strain.replace(" ", "_").replace("-", "_").replace("/", "_")
+    omics = omics.replace(" ", "_").replace("-", "_").replace("/", "_")
+
+    if outfile_dir == "./out":
+        outfile_dir = "_".join([species, strain, omics])
+        print("No output_dir provided, default to:", outfile_dir)
+    if not os.path.isdir(outfile_dir):
+        os.makedirs(outfile_dir)
+
     # entity_id and additional_id have the molecule name and/or annotations
     patterns = "|".join([
         "entity_id",
@@ -70,6 +80,14 @@ def main():
     data = data.filter(regex=patterns)
     names = data.filter(regex="replicate_name_").columns.tolist()
     data[names] = data[names].astype(int, errors="ignore")
+
+    info = data[names].T.iloc[:,1].dropna().astype(int)
+    info.index = info.index.str.replace("_replicate_[0-9]","").str.replace(
+        "replicate_name_",""
+        )
+    info = info.reset_index()[info.reset_index().columns[::-1]]
+    info.to_csv("".join([outfile_dir, "/", strain, "_info.tsv"]),
+                header=False, index=False, sep="\t")
     data.dropna(axis=1, how="all", inplace=True)
 
     samples = [[
@@ -82,16 +100,8 @@ def main():
         print("Null value count:\n", samples.T.isna().sum())
     samples = samples.apply(lambda x: x.fillna(x.median()), axis=1)
     samples.index = [int(x) for x in samples.index.tolist()]
-    
-    species = species.replace(" ", "_").replace("-", "_").replace("/", "_")
-    strain = strain.replace(" ", "_").replace("-", "_").replace("/", "_")
-    omics = omics.replace(" ", "_").replace("-", "_").replace("/", "_")
 
-    if outfile_dir == "./out":
-        outfile_dir = "_".join([species, strain, omics])
-        print("No output_dir provided, default to:", outfile_dir)
-    if not os.path.isdir(outfile_dir):
-        os.makedirs(outfile_dir)
+    info.reset_index()[info.reset_index().columns[::-1]]
 
     fig = samples.T.boxplot()
     fig.set_xticklabels(fig.get_xticklabels(), rotation=45)
