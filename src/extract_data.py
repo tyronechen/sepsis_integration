@@ -123,6 +123,7 @@ def main():
     plt.savefig("".join([outfile_dir, "/", strain, "_violin.pdf"]))
     plt.close()
 
+    sample_map = sample_map + "_" + pd.Series(range(len(sample_map))).astype(str)
     samples.index = sample_map
     samples.to_csv("".join([outfile_dir, "/", strain, ".tsv"]), sep="\t")
 
