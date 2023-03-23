@@ -86,7 +86,7 @@ def main():
         "replicate_name_",""
         )
     info = info.reset_index()[info.reset_index().columns[::-1]]
-    info.to_csv("".join([outfile_dir, "/", strain, "_info.tsv"]),
+    info.to_csv("".join([outfile_dir, "/", strain, "_map.tsv"]),
                 header=False, index=False, sep="\t")
     data.dropna(axis=1, how="all", inplace=True)
 
@@ -98,10 +98,18 @@ def main():
 
     if samples.T.isna().sum().sum() > 1:
         print("Null value count:\n", samples.T.isna().sum())
+        print("Autofilled null values with median of feature (not sample)")
     samples = samples.apply(lambda x: x.fillna(x.median()), axis=1)
     samples.index = [int(x) for x in samples.index.tolist()]
 
-    info.reset_index()[info.reset_index().columns[::-1]]
+    sample_map = info["index"]
+    sample_map.columns = None
+    for_multiomics = sample_map
+    for_multiomics = pd.DataFrame(for_multiomics)
+    for_multiomics.columns = [0]
+    for_multiomics.to_csv(
+        "".join([outfile_dir, "/", strain, "_info.tsv"]), sep="\t"
+        )
 
     fig = samples.T.boxplot()
     fig.set_xticklabels(fig.get_xticklabels(), rotation=45)
@@ -114,6 +122,7 @@ def main():
     plt.title(" ".join([species, strain, omics]))
     plt.savefig("".join([outfile_dir, "/", strain, "_violin.pdf"]))
     plt.close()
+
     samples.to_csv("".join([outfile_dir, "/", strain, ".tsv"]), sep="\t")
 
 if __name__ == "__main__":
