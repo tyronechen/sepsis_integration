@@ -123,6 +123,7 @@ def main():
     plt.savefig("".join([outfile_dir, "/", strain, "_violin.pdf"]))
     plt.close()
 
+    samples.index = sample_map
     samples.to_csv("".join([outfile_dir, "/", strain, ".tsv"]), sep="\t")
 
 if __name__ == "__main__":
