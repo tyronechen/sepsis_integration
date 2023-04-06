@@ -13,10 +13,13 @@ for d in "${DEPENDENCIES[@]}"; do
 done
 
 # we expect fasta/gz, gtf and coords in integer format
-if [ "$#" -ne 3 ]; then
-    echo "Usage: $0 <genome.fasta> <annotation.gtf> <length_upstream_of_tss> [cpu]"
-    echo "Extract a range of sequences upstream of the TSS, writeout as a bed file"
-    exit 1
+if [ "$#" -eq 3 ] || [ "$#" -eq 4 ] ; then
+  # correct number of arguments so we carry on
+  echo "" > /dev/null
+else
+  echo "Usage: $0 <genome.fasta> <annotation.gtf> <length_upstream_of_tss> [cpu]"
+  echo "Extract a range of sequences upstream of the TSS, writeout as a bed file"
+  exit 1
 fi
 
 # genome fasta file
