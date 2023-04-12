@@ -41,35 +41,54 @@ gzip -dv ${genome}
 
 # get rid of anything that goes off the end of the chromosome
 echo ${i} ${i}.${len}.bed.tmp
-gtf2bed < ${i} | \
-  awk -v len=${len} -F'\t' '{if($2<=len) next; if($2) print}' | \
-  awk -v len=${len} -F'\t' 'BEGIN{OFS="\t"} { $3=$2; $2=$2-len ; print }' > \
-  ${i}.${len}.bed.tmp
 
-# offset -1000 of TSS to mine for information-rich regions
-echo bedops --range -${len}:-${len} --everything ${i}.${len}.bed.tmp ${i}.${len}.bed
-bedops --range -${len}:-${len} --everything ${i}.${len}.bed.tmp > \
-  ${i}.${len}.bed
+# want to keep the file name as negative, but the actual input requires positive integers
+if (( $len < 0 )); then
+  len_real=${len#?}
+  len_name=${len}
+  gtf2bed < ${i} | \
+    awk -v len=${len_real} -F'\t' '{if($2<=len) next; if($2) print}' | \
+    awk -v len=${len_real} -F'\t' 'BEGIN{OFS="\t"} { $3=$2; $2=$2-len ; print }' > \
+    ${i}.${len_name}.bed.tmp
+else
+  len_real=${len}
+  len_name=${len}  
+  gtf2bed < ${i} | \
+    awk -v len=${len_real} -F'\t' 'BEGIN{OFS="\t"} { $3=$2+len+1; $2=$2+1 ; print }' > \
+    ${i}.${len_name}.bed.tmp
+fi
 
-# it is possible that this may overlap into genic regions but informative
-echo bedops --element-of 1 ${i}.${len}.bed.tmp ${i}.${len}.bed ${i}.${len}.bed.overlap
-bedops --element-of 1 ${i}.${len}.bed.tmp ${i}.${len}.bed > \
-  ${i}.${len}.bed.overlap
-wc -l ${i} ${i}.${len}.bed ${i}.${len}.bed.overlap
+# offset from TSS to mine for information-rich regions
+echo bedops --range -${len_real}:-${len_real} --everything ${i}.${len_name}.bed.tmp \
+  ${i}.${len_name}.bed
+bedops --range -${len_real}:-${len_real} --everything ${i}.${len_name}.bed.tmp > \
+  ${i}.${len_name}.bed
+
+if (( $len < 0 )); then
+  # it is possible that this may overlap into genic regions but informative
+  # specifically, we are only interested in the overlaps for the -ve (upstream) case
+  echo bedops --element-of 1 ${i}.${len_name}.bed.tmp ${i}.${len_name}.bed \
+    ${i}.${len_name}.bed.overlap
+  bedops --element-of 1 ${i}.${len_name}.bed.tmp ${i}.${len_name}.bed > \
+    ${i}.${len_name}.bed.overlap
+  wc -l ${i} ${i}.${len_name}.bed ${i}.${len_name}.bed.overlap
+else
+  echo "Extracting downstream from TSS, gene overlap stats not relevant"
+fi
 
 # extract the seqs we need, reverse complementing reverse strands
-echo bedtools getfasta -s -bed ${i}.${len}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len}.fasta
-bedtools getfasta -s -bed ${i}.${len}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len}.fasta
-rm ${i}.${len}.bed.tmp
+echo bedtools getfasta -s -bed ${i}.${len_name}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len_name}.fasta
+bedtools getfasta -s -bed ${i}.${len_name}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len_name}.fasta
+rm ${i}.${len_name}.bed.tmp
 
 # unzip
 echo ${genome/.gz}
 gzip -v ${genome/.gz}
 
-python convert_input.py ${i}.${len}.fasta \
+python convert_input.py ${i}.${len_name}.fasta \
   -t ${cpu} \
-  -o ${i}.${len}.bed \
+  -o ${i}.${len_name}.bed \
   -s 100000 \
   -i
 
-gzip ${i}.${len}.fasta
+gzip ${i}.${len_name}.fasta
