@@ -17,7 +17,7 @@ if [ "$#" -eq 3 ] || [ "$#" -eq 4 ] || [ "$#" -eq 5 ]; then
   # correct number of arguments so we carry on
   echo "" > /dev/null
 else
-  echo "Usage: $0 <genome.fasta> <annotation.gtf> <length_upstream_of_tss> [cpu] [--keep_overlaps]"
+  echo "Usage: $0 <genome.fasta> <annotation.gtf> <length_upstream_of_tss> [cpu] [--keep-overlaps]"
   echo "Extract a range of sequences upstream of the TSS, writeout as a bed file"
   exit 1
 fi
@@ -79,7 +79,7 @@ if (( $len < 0 )); then
   bedops --element-of 1 ${i}.${len_name}.bed.tmp ${i}.bed.tmp > \
     ${i}.${len_name}.bed.overlap
   wc -l ${i}.bed.tmp ${i}.${len_name}.bed.tmp ${i}.${len_name}.bed.overlap
-  if [[ $keep_overlaps -eq '--keep_overlaps' ]]; then
+  if [[ "$keep_overlaps" == '--keep-overlaps' ]]; then
     echo "Retain overlaps in file"
   else
     echo "Remove overlaps in file, final count of non-overlapping regions:"
