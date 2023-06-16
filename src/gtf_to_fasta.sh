@@ -13,12 +13,12 @@ for d in "${DEPENDENCIES[@]}"; do
 done
 
 # we expect fasta/gz, gtf and coords in integer format
-if [ "$#" -eq 3 ] || [ "$#" -eq 4 ] || [ "$#" -eq 5 ]; then
+if [ "$#" -eq 4 ] || [ "$#" -eq 5 ] || [ "$#" -eq 6 ]; then
   # correct number of arguments so we carry on
   echo "" > /dev/null
 else
-  echo "Usage: $0 <genome.fasta> <annotation.gtf> <length_upstream_of_tss> [cpu] [--keep-overlaps]"
-  echo "Extract a range of sequences upstream of the TSS, writeout as a bed file"
+  echo "Usage: $0 <genome.fasta> <annotation.gtf> <start> <finish> [cpu] [--keep-overlaps]"
+  echo "Extract a range of sequences relative to the TSS, writeout as a bed file"
   exit 1
 fi
 
@@ -26,12 +26,13 @@ fi
 genome=$1
 # annotation gtf file
 i=$2
-# length from TSS (if -ve takes upstream seqs)
-len=$3
+# index from TSS (if -ve takes upstream seqs)
+start=$3
+finish=$4
 # number of cpus needed
-cpu=$4
+cpu=$5
 # discard overlapping regions by default
-keep_overlaps=$5
+keep_overlaps=$6
 
 # if cpu not provided set to 1
 if [ -z "$cpu" ]; then
@@ -42,69 +43,67 @@ fi
 echo ${genome}
 gzip -dv ${genome}
 
-# get rid of anything that goes off the end of the chromosome
-echo ${i} ${i}.${len}.bed.tmp
+# extract window, get rid of anything that goes off the end of the chromosome
+# note that this also deletes genes with shorter length than selected window
+echo ${i} ${i}.${start}:${finish}.bed.tmp
+gtf2bed < ${i} | \
+  awk -v start=${start} -v finish=${finish} -F'\t' 'BEGIN{OFS="\t"} { 
+    $11=$3-$2; $3=$2+finish; $2=$2+start; if ($11>finish-start && $2>0) print 
+    }' | \
+  cut -f1-10 > ${i}.${start}:${finish}.bed.tmp
 
-# want to keep the file name as negative, but the actual input requires positive integers
-if (( $len < 0 )); then
-  len_real=${len#?}
-  len_name=${len}
-  gtf2bed < ${i} | \
-    awk -v len=${len_real} -F'\t' '{if($2<=len) next; if($2) print}' | \
-    awk -v len=${len_real} -F'\t' 'BEGIN{OFS="\t"} { $3=$2-1; $2=$2-len-1 ; print }' > \
-    ${i}.${len_name}.bed.tmp
-else
-  len_real=${len}
-  len_name=${len}  
-  gtf2bed < ${i} | \
-    awk -v len=${len_real} -F'\t' 'BEGIN{OFS="\t"} { $3=$2+len+1; $2=$2+1 ; print }' > \
-    ${i}.${len_name}.bed.tmp
-fi
-
-# NOTE: REF ONLY DO NOT USE, REDUNDANT WITH ABOVE
-# offset from TSS to mine for information-rich regions
-# echo bedops --range -${len_real}:-${len_real} --everything ${i}.${len_name}.bed.tmp \
-#   ${i}.${len_name}.bed
-# bedops --range -${len_real}:-${len_real} --everything ${i}.${len_name}.bed.tmp > \
-#   ${i}.${len_name}.bed
-
-if (( $len < 0 )); then
-  # it is possible that this may overlap into genic regions but informative
-  # specifically, we are only interested in the overlaps for the -ve (upstream) case
-  # if we want to do this, we need the original coordinates of all genes
+# if [[ "${keep_overlaps#--}" -eq 'keep-overlaps' ]]; then
+#   echo "Retain overlaps in file"
+#   echo ${keep_overlaps#--}
+# fi
+if [[ -z "${keep_overlaps}" ]]; then
+  echo "Remove overlaps in file"
+  if [ "$finish" -gt "0" ]; then
+    # to compare overlap, we subtract the genic region if present in index
+    # here, genic region refers to the same gene only (SELF overlaps) 
+    mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.bed.tmp.tmp
+    awk -v finish=${finish} -F'\t' 'BEGIN{OFS="\t"} {$3=$3-finish; print}' \
+      ${i}.${start}:${finish}.bed.tmp.tmp > ${i}.${start}:${finish}.bed.tmp
+    rm ${i}.${start}:${finish}.bed.tmp.tmp 
+  fi
+  # now we remove overlaps where the region extends into OTHER genes
   echo gtf2bed ${i} ${i}.bed.tmp
   gtf2bed < ${i} > ${i}.bed.tmp
-  echo bedops --element-of 1 ${i}.${len_name}.bed.tmp ${i}.bed.tmp \
-    ${i}.${len_name}.bed.overlap
-  bedops --element-of 1 ${i}.${len_name}.bed.tmp ${i}.bed.tmp > \
-    ${i}.${len_name}.bed.overlap
-  wc -l ${i}.bed.tmp ${i}.${len_name}.bed.tmp ${i}.${len_name}.bed.overlap
-  if [[ "$keep_overlaps" == '--keep-overlaps' ]]; then
-    echo "Retain overlaps in file"
-  else
-    echo "Remove overlaps in file, final count of non-overlapping regions:"
-    bedtools subtract -A -a ${i}.${len_name}.bed.tmp -b ${i}.${len_name}.bed.overlap > \
-      ${i}.${len_name}.bed.tmp.tmp
-    mv ${i}.${len_name}.bed.tmp.tmp ${i}.${len_name}.bed.tmp
-    wc -l ${i}.${len_name}.bed.tmp
+  echo bedops --element-of 1 ${i}.${start}:${finish}.bed.tmp ${i}.bed.tmp \
+    ${i}.${start}:${finish}.bed.overlap
+  bedops --element-of 1 ${i}.${start}:${finish}.bed.tmp ${i}.bed.tmp > \
+    ${i}.${start}:${finish}.bed.overlap
+  wc -l ${i}.bed.tmp ${i}.${start}:${finish}.bed.tmp \
+    ${i}.${start}:${finish}.bed.overlap
+  echo "Final count of non-overlapping regions:"
+  bedtools subtract -A -a ${i}.${start}:${finish}.bed.tmp -b ${i}.${start}:${finish}.bed.overlap > \
+    ${i}.${start}:${finish}.bed.tmp.tmp
+  mv ${i}.${start}:${finish}.bed.tmp.tmp ${i}.${start}:${finish}.bed.tmp
+  wc -l ${i}.${start}:${finish}.bed.tmp
+  if [ "$finish" -gt "0" ]; then
+    # restore the original file, otherwise it will only be upstream of TSS
+    mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.bed.tmp.tmp
+    awk -v finish=${finish} -F'\t' 'BEGIN{OFS="\t"} {$3=$3+finish; print}' \
+      ${i}.${start}:${finish}.bed.tmp.tmp > ${i}.${start}:${finish}.bed.tmp
+    rm ${i}.${start}:${finish}.bed.tmp.tmp 
   fi
 else
-  echo "Extracting downstream from TSS, gene overlap stats not relevant"
+  echo "Retain overlaps in file"
 fi
 
 # extract the seqs we need, reverse complementing reverse strands
-echo bedtools getfasta -s -bed ${i}.${len_name}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len_name}.fasta
-bedtools getfasta -s -bed ${i}.${len_name}.bed.tmp -fi ${genome/.gz} -fo ${i}.${len_name}.fasta
-rm ${i}.${len_name}.bed.tmp
+echo bedtools getfasta -s -bed ${i}.${start}:${finish}.bed.tmp -fi ${genome/.gz} -fo ${i}.${start}:${finish}.fasta
+bedtools getfasta -s -bed ${i}.${start}:${finish}.bed.tmp -fi ${genome/.gz} -fo ${i}.${start}:${finish}.fasta
+rm ${i}.${start}:${finish}.bed.tmp
 
 # unzip
 echo ${genome/.gz}
 gzip -v ${genome/.gz}
 
-python convert_input.py ${i}.${len_name}.fasta \
+python convert_input.py ${i}.${start}:${finish}.fasta \
   -t ${cpu} \
-  -o ${i}.${len_name}.bed \
+  -o ${i}.${start}:${finish}.bed \
   -s 100000 \
   -i
 
-gzip ${i}.${len_name}.fasta
+gzip ${i}.${start}:${finish}.fasta
