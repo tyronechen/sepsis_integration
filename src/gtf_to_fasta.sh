@@ -63,11 +63,11 @@ if [[ -z "${keep_overlaps}" ]]; then
     echo "Remove self-overlapping genic regions in file"
     # to compare overlap, we subtract the genic region if present in index
     # here, genic region refers to the same gene only (SELF overlaps) 
-    mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.bed.tmp.tmp
+    mv ${i}.${start}':'${finish}.bed.tmp ${i}.${start}':'${finish}.bed.tmp.tmp
     awk -v start=${start} -v finish=${finish} -F'\t' \
       'BEGIN{OFS="\t"} {$3=$3-finish; print}' \
-      ${i}.${start}:${finish}.bed.tmp.tmp > ${i}.${start}:${finish}.bed.tmp
-    rm ${i}.${start}:${finish}.bed.tmp.tmp 
+      ${i}.${start}':'${finish}.bed.tmp.tmp > ${i}.${start}':'${finish}.bed.tmp
+    rm ${i}.${start}':'${finish}.bed.tmp.tmp 
   fi
   # now we remove overlaps where the region extends into OTHER genes
   echo gtf2bed ${i} ${i}.bed.tmp
@@ -121,4 +121,5 @@ python /projects/lz25/tyronec/repos/sepsis_integration/src/convert_input.py \
   -s 100000 \
   -i
 
-gzip ${i}.${start}:${finish}.${overlap}.fasta
+echo "Overriding ${i}.${start}:${finish}.${overlap}.fasta.gz if exists!"
+gzip -f ${i}.${start}:${finish}.${overlap}.fasta
