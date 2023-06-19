@@ -18,7 +18,7 @@ if [ "$#" -eq 4 ] || [ "$#" -eq 5 ] || [ "$#" -eq 6 ]; then
   echo "" > /dev/null
 else
   echo "Usage: $0 <genome.fasta> <annotation.gtf> <start> <finish> [cpu] [--keep-overlaps]"
-  echo "Extract a range of sequences relative to the TSS, writeout as a bed file"
+  echo "Extract a range of sequences relative to the TSS, write out as bed and fasta files"
   exit 1
 fi
 
@@ -57,12 +57,15 @@ gtf2bed < ${i} | \
 #   echo ${keep_overlaps#--}
 # fi
 if [[ -z "${keep_overlaps}" ]]; then
-  echo "Remove overlaps in file"
-  if [ "$finish" -gt "0" ]; then
+  overlap='no_overlap'
+  echo "Remove overlaps"
+  if [ "$start" -lt "0" ] && [ "$finish" -gt "0" ]; then
+    echo "Remove self-overlapping genic regions in file"
     # to compare overlap, we subtract the genic region if present in index
     # here, genic region refers to the same gene only (SELF overlaps) 
     mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.bed.tmp.tmp
-    awk -v finish=${finish} -F'\t' 'BEGIN{OFS="\t"} {$3=$3-finish; print}' \
+    awk -v start=${start} -v finish=${finish} -F'\t' \
+      'BEGIN{OFS="\t"} {$3=$3-finish; print}' \
       ${i}.${start}:${finish}.bed.tmp.tmp > ${i}.${start}:${finish}.bed.tmp
     rm ${i}.${start}:${finish}.bed.tmp.tmp 
   fi
@@ -76,34 +79,46 @@ if [[ -z "${keep_overlaps}" ]]; then
   wc -l ${i}.bed.tmp ${i}.${start}:${finish}.bed.tmp \
     ${i}.${start}:${finish}.bed.overlap
   echo "Final count of non-overlapping regions:"
-  bedtools subtract -A -a ${i}.${start}:${finish}.bed.tmp -b ${i}.${start}:${finish}.bed.overlap > \
+  echo bedtools subtract -A -a ${i}.${start}:${finish}.bed.tmp \
+    -b ${i}.${start}:${finish}.bed.overlap \
     ${i}.${start}:${finish}.bed.tmp.tmp
-  mv ${i}.${start}:${finish}.bed.tmp.tmp ${i}.${start}:${finish}.bed.tmp
-  wc -l ${i}.${start}:${finish}.bed.tmp
+  bedtools subtract -A -a ${i}.${start}:${finish}.bed.tmp \
+    -b ${i}.${start}:${finish}.bed.overlap > \
+    ${i}.${start}:${finish}.bed.tmp.tmp
+  mv ${i}.${start}:${finish}.bed.tmp.tmp \
+    ${i}.${start}:${finish}.${overlap}.bed.tmp
+  wc -l ${i}.${start}:${finish}.${overlap}.bed.tmp
   if [ "$finish" -gt "0" ]; then
     # restore the original file, otherwise it will only be upstream of TSS
-    mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.bed.tmp.tmp
+    mv ${i}.${start}:${finish}.${overlap}.bed.tmp \
+      ${i}.${start}:${finish}.${overlap}.bed.tmp.tmp
     awk -v finish=${finish} -F'\t' 'BEGIN{OFS="\t"} {$3=$3+finish; print}' \
-      ${i}.${start}:${finish}.bed.tmp.tmp > ${i}.${start}:${finish}.bed.tmp
-    rm ${i}.${start}:${finish}.bed.tmp.tmp 
+      ${i}.${start}:${finish}.${overlap}.bed.tmp.tmp > \
+      ${i}.${start}:${finish}.${overlap}.bed.tmp
+    rm ${i}.${start}:${finish}.${overlap}.bed.tmp.tmp 
   fi
 else
   echo "Retain overlaps in file"
+  overlap='is_overlap'
+  mv ${i}.${start}:${finish}.bed.tmp ${i}.${start}:${finish}.${overlap}.bed.tmp
 fi
 
 # extract the seqs we need, reverse complementing reverse strands
-echo bedtools getfasta -s -bed ${i}.${start}:${finish}.bed.tmp -fi ${genome/.gz} -fo ${i}.${start}:${finish}.fasta
-bedtools getfasta -s -bed ${i}.${start}:${finish}.bed.tmp -fi ${genome/.gz} -fo ${i}.${start}:${finish}.fasta
-rm ${i}.${start}:${finish}.bed.tmp
+echo bedtools getfasta -s -bed ${i}.${start}:${finish}.${overlap}.bed.tmp \
+  -fi ${genome/.gz} -fo ${i}.${start}:${finish}.${overlap}.fasta
+bedtools getfasta -s -bed ${i}.${start}:${finish}.${overlap}.bed.tmp \
+  -fi ${genome/.gz} -fo ${i}.${start}:${finish}.${overlap}.fasta
+rm ${i}.${start}:${finish}.${overlap}.bed.tmp
 
 # unzip
 echo ${genome/.gz}
 gzip -v ${genome/.gz}
 
-python convert_input.py ${i}.${start}:${finish}.fasta \
+python /projects/lz25/tyronec/repos/sepsis_integration/src/convert_input.py \
+  ${i}.${start}:${finish}.${overlap}.fasta \
   -t ${cpu} \
-  -o ${i}.${start}:${finish}.bed \
+  -o ${i}.${start}:${finish}.${overlap}.bed \
   -s 100000 \
   -i
 
-gzip ${i}.${start}:${finish}.fasta
+gzip ${i}.${start}:${finish}.${overlap}.fasta
