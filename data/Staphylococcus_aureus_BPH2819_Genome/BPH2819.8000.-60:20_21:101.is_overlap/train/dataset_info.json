@@ -1,0 +1,69 @@
+{
+  "builder_name": "csv",
+  "citation": "",
+  "config_name": "default",
+  "dataset_size": 1484012,
+  "description": "",
+  "download_checksums": {
+    "/fs04/lz25/tyronec/repos/sepsis_integration/data/Staphylococcus_aureus_BPH2819_Genome/BPH2819.8000.-60:20_21:101.is_overlapdata.hf.csv": {
+      "num_bytes": 1383735,
+      "checksum": null
+    }
+  },
+  "download_size": 1383735,
+  "features": {
+    "idx": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "feature": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "labels": {
+      "names": [
+        "NEGATIVE",
+        "POSITIVE"
+      ],
+      "_type": "ClassLabel"
+    },
+    "input_ids": {
+      "feature": {
+        "dtype": "int32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "token_type_ids": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    },
+    "attention_mask": {
+      "feature": {
+        "dtype": "int8",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 2867747,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 1484012,
+      "num_examples": 11144,
+      "dataset_name": "csv"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
