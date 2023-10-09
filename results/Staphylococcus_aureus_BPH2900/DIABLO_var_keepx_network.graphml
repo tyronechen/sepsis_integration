@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="v_group" for="node" attr.name="group" attr.type="string"/>
+  <key id="v_label.color" for="node" attr.name="label.color" attr.type="string"/>
+  <key id="v_label.family" for="node" attr.name="label.family" attr.type="string"/>
+  <key id="v_label" for="node" attr.name="label" attr.type="string"/>
+  <key id="v_color" for="node" attr.name="color" attr.type="string"/>
+  <key id="v_shape" for="node" attr.name="shape" attr.type="string"/>
+  <key id="v_label.cex" for="node" attr.name="label.cex" attr.type="double"/>
+  <key id="v_size" for="node" attr.name="size" attr.type="double"/>
+  <key id="v_size2" for="node" attr.name="size2" attr.type="double"/>
+  <key id="e_weight" for="edge" attr.name="weight" attr.type="double"/>
+  <key id="e_label.color" for="edge" attr.name="label.color" attr.type="string"/>
+  <key id="e_color" for="edge" attr.name="color" attr.type="string"/>
+  <key id="e_lty" for="edge" attr.name="lty" attr.type="string"/>
+  <key id="e_width" for="edge" attr.name="width" attr.type="double"/>
+  <key id="e_label.cex" for="edge" attr.name="label.cex" attr.type="double"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="n0">
+      <data key="v_name">Metabolomics_HMDB0000207</data>
+      <data key="v_group">Metabolomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Metabolomics_HMDB0000207</data>
+      <data key="v_color">darkorchid</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.805908571429</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n1">
+      <data key="v_name">Metabolomics_HMDB0000273</data>
+      <data key="v_group">Metabolomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Metabolomics_HMDB0000273</data>
+      <data key="v_color">darkorchid</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.805908571429</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n2">
+      <data key="v_name">Metabolomics_HMDB0000573</data>
+      <data key="v_group">Metabolomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Metabolomics_HMDB0000573</data>
+      <data key="v_color">darkorchid</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.805908571429</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n3">
+      <data key="v_name">Metabolomics_HMDB0000673</data>
+      <data key="v_group">Metabolomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Metabolomics_HMDB0000673</data>
+      <data key="v_color">darkorchid</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.805908571429</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n4">
+      <data key="v_name">Metabolomics_HMDB0003911</data>
+      <data key="v_group">Metabolomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Metabolomics_HMDB0003911</data>
+      <data key="v_color">darkorchid</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.805908571429</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n5">
+      <data key="v_name">Proteomics_WP_000606549.1</data>
+      <data key="v_group">Proteomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Proteomics_WP_000606549.1</data>
+      <data key="v_color">lightgreen</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.821182857143</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n6">
+      <data key="v_name">Proteomics_WP_000702263.1</data>
+      <data key="v_group">Proteomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Proteomics_WP_000702263.1</data>
+      <data key="v_color">lightgreen</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.821182857143</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n7">
+      <data key="v_name">Proteomics_WP_000794647.1</data>
+      <data key="v_group">Proteomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Proteomics_WP_000794647.1</data>
+      <data key="v_color">lightgreen</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.821182857143</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n8">
+      <data key="v_name">Proteomics_WP_001126602.1</data>
+      <data key="v_group">Proteomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Proteomics_WP_001126602.1</data>
+      <data key="v_color">lightgreen</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.821182857143</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <node id="n9">
+      <data key="v_name">Proteomics_WP_001165363.1</data>
+      <data key="v_group">Proteomics</data>
+      <data key="v_label.color">black</data>
+      <data key="v_label.family">sans</data>
+      <data key="v_label">Proteomics_WP_001165363.1</data>
+      <data key="v_color">lightgreen</data>
+      <data key="v_shape">circle</data>
+      <data key="v_label.cex">1</data>
+      <data key="v_size">107.821182857143</data>
+      <data key="v_size2">10.9669371428571</data>
+    </node>
+    <edge source="n0" target="n5">
+      <data key="e_weight">-0.98851744518068</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n0" target="n6">
+      <data key="e_weight">0.983836197481796</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n0" target="n7">
+      <data key="e_weight">0.992089516466303</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n0" target="n8">
+      <data key="e_weight">-0.990705634421091</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n0" target="n9">
+      <data key="e_weight">-0.993472519433618</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n1" target="n5">
+      <data key="e_weight">-0.987734501561775</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n1" target="n6">
+      <data key="e_weight">0.983056961590086</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n1" target="n7">
+      <data key="e_weight">0.991303743630339</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n1" target="n8">
+      <data key="e_weight">-0.989920957672628</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n1" target="n9">
+      <data key="e_weight">-0.992685651206415</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n2" target="n5">
+      <data key="e_weight">-0.988158283634869</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n2" target="n6">
+      <data key="e_weight">0.983478736790298</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n2" target="n7">
+      <data key="e_weight">0.991729057067176</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n2" target="n8">
+      <data key="e_weight">-0.99034567783273</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n2" target="n9">
+      <data key="e_weight">-0.993111557543122</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n3" target="n5">
+      <data key="e_weight">-0.987636966017816</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n3" target="n6">
+      <data key="e_weight">0.982959887937864</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n3" target="n7">
+      <data key="e_weight">0.991205855635426</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n3" target="n8">
+      <data key="e_weight">-0.989823206223295</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n3" target="n9">
+      <data key="e_weight">-0.99258762675266</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n4" target="n5">
+      <data key="e_weight">-0.987563547222779</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n4" target="n6">
+      <data key="e_weight">0.982886816826692</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n4" target="n7">
+      <data key="e_weight">0.991132171536857</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#FF0000FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n4" target="n8">
+      <data key="e_weight">-0.989749624907892</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+    <edge source="n4" target="n9">
+      <data key="e_weight">-0.992513839936215</data>
+      <data key="e_label.color">black</data>
+      <data key="e_color">#00FF00FF</data>
+      <data key="e_lty">solid</data>
+      <data key="e_width">1</data>
+      <data key="e_label.cex">0.977162584282317</data>
+    </edge>
+  </graph>
+</graphml>
