@@ -1,0 +1,181 @@
+Bacterial strain	Gene identifier detected by multi-omics pipeline	Gene name (if known)	Computational annotations (if known)	Biological relevance (if known)	Oligonucleotides scored highly by genomeNLP	Oligonucleotide features (if known, with DOI link)	
+BPH2760	EW032_RS00675	isdI	iron pathway	iron pathway	AAAAATA	unknown	
+					AATATAT	TATA box	
+					TAAAAACCCCTA	regulates maltose regulon	
+					GTCACC	unknown	
+					TTGTC	homology to part of a cAMP receptor protein binding site in Klebsiella	
+					TAAA	match to part of a consensus sequence for flagellar gene promoter	
+					TTCATG 	unknown	
+					ATTAGGGGTTT	(in the context of primers designed around this area, function unknown) H pylori	partial match (2 bp off) to Hum+Tetrad stable structural feature
+	EW032_RS04130	gap	general metabolism	NA	TTGAA	ISEcp mobile genetic element responsible for AMR	
+					TAAGA	(in the context of primers designed around this area, function unknown) H pylori	
+					TATCATTTT	unknown	
+					AAAGGAG	Shine-Dalgarno	
+					TTATAATG	conserved region in thr operon	
+	EW032_RS04145	NA	2,3-bisphosphoglycerate-independent phosphoglycerate mutase	response to oxidative stress, immune related?	CACTTAAA	known TATA box variant in protozoa	
+					CGT	not searched	
+					ACAATTG	partial match (-1) to known conserved promoter in M tuberculosis for membrane transport protein efpA	
+					TTAGAA	conserved region in ecoli outer membrane porin Ompg	
+					GGTGC	gpNTRc binding site in enteric bacteria	
+	EW032_RS04295	NA	nitroreductase	nitrogen metabolism related pathways	GTAAGT	homology to region upstream of aph(3′)-IIIa (in the context of primers), function unknown, gene involved in aminoglycoside resistance	
+					TTA	unknown	
+					GAAGTA	unknown	
+					TGGAGG	known RBS motif	
+					AGC	unknown	
+					GATTTT	unknown	
+					GAATTACAACAAGCA	represses mannosyl transport, self regulating	
+	EW032_RS05520	NA	iron ABC transporter permease	iron pathway	TTATTTT	generic loop forming structure	matches at least one non-conserved saer binding site in S aureus
+					AAAT	unknown	
+					AATAAAAA	Thymidine Kinase (TK) polyadenylation signal and gh TATA-like element for herpes simplex virus	human polyA site
+BPH2819	EW030_RS00705	NA	isochorismatase family protein	association with phenazine pathway/TCA cycle intermediate	TAAATATA	potential promoter element	TATA box, but has a potential stabilising function in bacteria, usually at -10 though here its not
+					CATACA	conserved region upstream of acetyl-coA transferase gene, possible association	
+					CTTAC	matches start of pho box in e coli, unknown if S aureus has pho box. pathogenicity, abiotic stress, biofilm formation depending on spe ies	
+					CC	unknown	
+					CCTTCGATCA (weak attribution)	unknown	
+					AGGGGGTA	matches a exonuclease protected region in maize, has loop structure, unknown in bacteria	
+					TTATTTT	generic loop forming structure	matches at least one non-conserved saer binding site in S aureus
+					ATTAA	putative S-D in Actinobacillus actinomycetemcomitans	partial match to dehalobox in the promoter region of genes which belong to the family of CRP-FNR (cAMP-binding protein-fumarate nitrate reduction regulatory protein) transcription regulators
+	EW030_RS00740	NA	MurR/RpiR family transcriptional regulator	MurR/RpiR, which is a transcriptional regulator that represses the operon MurPQ involved in the uptake and degradation of N-acetylmuramic acid.	TACA	unknown	
+					TATTTAT (weak attribution)	potential promoter element	TATA box, but has a potential stabilising function in bacteria, usually at -10 though here its not
+					TGCGACA	partial match (TGAGACA) to TF-binding site in promoter of nap operon encoding periplasmic nitrate reductase in paracoccus pantotrophus	
+					TGTTG	no match, matches a subsequence in STAR region but not repeated	
+					GGTGAT (weak attribution)	homology to upstream of nuc1 methicillin resistance	
+					TAATGATG	homology to nifv and nifw in Klebsiella pneumoniae, nitrogen fixation, position accurate	
+					AATATTTTA	homology to mntABCpLL39 upstream	
+					TATCG	part of a palA element in S aureus. plasmid only, but this is in chromosome	
+	EW030_RS06895	brnQ	branched-chain amino acid transport system II carrier protein	NA	AAATA	ACGAA (weak attribution)	part of a binding site for LexA, highly conserved, triggers when antibiotics are provided
+					TCAACAGGAATA	transcriptional repression	
+					TAA	underrepresented trinucleotide in some bacterial species	
+					TCGTAGGATGC	nitrate metabolism	
+					TTATAT	matches early region of spectinomycin resistance gene, on synthetic plasmid	
+	EW030_RS07575	NA	glycine dehydrogenase subunit 2	NA	ATC	unknown	
+					TTAA	matches one element of a repeat sequence for saer binding	the SaeRS Two‐Component System of Staphylococcus aureus
+					AAAAATAAA	polyA addition signal in human	
+					ATATT	no match, partial to att sites	
+					CTAACTTT	no match to bacteria	
+					GTAT	various homology to primers	
+					GAAGATTT                    	no match, matches synthetic sites	
+	EW030_RS10880	NA	membrane protein	NA	GACTAA	matches primer for antiseptic resistance gene in S aureus	
+					TTAA	matches one element of a repeat sequence for saer binding	https://doi.org/10.3390/genes7100081
+					GAAATTATA	part of T7 promoter sequence in bacillus subtilis	
+					GTGG	various homology to primers	
+					TTCT	no match, partial to att sites	
+					CTTTTT	1 mismatch from a putative nucleoid protein binding domain in plasmids/forms loop if in tandem (not here)	
+					CATTT	matches part of consensus sequence for heat shock protein in ecoli	some heat shock proteins are known to be membrane-bound
+					GTTCGATTTTT	metJ methionine biosynthesis and transport	
+BPH2900	EW029_RS00795	NA	4'-phosphopantetheinyl transferase superfamily protein	fatty acid biosynthesis	TGGGCGCAAT	unknown	
+					TAAGTAA	Hex target: S. pneumoniaealso contains aspecialized  repair  system  that  recognizes  onlythe   mismatched   sequence   5-ATTAAT/TAAGTA-5(mismatched  bases  are  under-lined) and converts the A to C (86	
+					GTAGG	putative RBS in Ecoli	
+					GAAAGT 	unknown	
+					TATGACAGT	homology to upstream region of Lactonase Gene (aiiA) in B cereus	
+	EW029_RS05910	sucD	succinate--CoA ligase subunit alpha	NA	AAAA	unknown	
+					ATTGTTAAACTAG	motif in Bacillus subtilis regulating glutamate synthase	
+					TCAAAG	upstream regions for various genes (primers)	
+					TGGGAG	Hotoda sequence (not present in S aureus but has known antimicrobial and antiviral properties)	
+					CACTA	CACTA transposon superfamily (no known prokaryotic equivalent)	
+					TGCA	tetranucleotide that is underrepresented in DNA sequences	
+					TGTA	part of IS30 bacterial mobile genetic element	
+					TTTAT	dna structural feature conserved around ORF of prokaryotes and eukaryotes	
+	EW029_RS11320	NA	membrane protein	NA	TAATTAAG	computationally identified as an interesting region in prokaryotes	
+					TAGTGGTTCTTA	binding site for regulatory protein of adaptive response	
+					TCATTT	unknown	
+					GTTCGATTTTT	metJ methionine biosynthesis and transport	
+	EW029_RS11425	glmS	glutamine--fructose-6-phosphate transaminase (isomerizing)	nitrogen metabolism related pathways	AA	overrepresented dinucleotide in some bacterial species (polymerase slippage?)	
+					AATAA	SaeR protected region partial homology	
+					AATCAATCATGTATT	LysR family transcriptional regulator	
+					ATGG	unknown	
+					CACCCTTTTA	unknown	
+	EW029_RS13620	NA	ATP-dependent Clp protease ATP-binding subunit		GTTTCAA	conserved region in Mprc binding site in Myxococcus xanthus	
+					TACTT	unknown	
+					TTAAAAA	unknown	
+					TTTA	known repeat region in H influenzae (function unknown)	
+					GAGGTGA	Shine-Dalgarno	
+					AATAA                    	SaeR protected region partial homology	
+BPH2947	EW033_RS03940	NA	DUF4040 family protein	membrane transporter	GTGTGAA	known regulatory RNA region (5' half stem) upstream of prokaryote metabolism genes	
+					CATAG	unknown	
+					TATTTAT	potential promoter element	TATA box, but has a potential stabilising function in bacteria, usually at -10 though here its not
+					ATTTC	protospacer-adjacent motif (PAM) targetable by CRISPR Cas9	
+					ATTACAATTATAGAA	motif in Bacillus subtilis regulating glutamate synthase	
+					ACAAAGGAGGCT	regulates maltose regulon	
+					AATAATGA	yeast mrna formation signal	
+					TTTA	known repeat region in H influenzae (function unknown)	
+					TTTATT	part of 11 bp ARS (autonomously repeating sequence) consensus sequence	
+	EW033_RS03950	NA	cation:proton antiporter	NA	TTTATT	part of 11 bp ARS (autonomously repeating sequence) consensus sequence	
+					CTCA	conserved initiator motif in promoter region of yeast (not prokaryote)	
+					GTTGTTGGTGTTA	maltose positive regulon	
+					TTGTC	putative DnaA box in Streptomyces coelicolor 	
+					ACA	underrepresented trinucleotide in some bacterial species	
+					GTGATG	indicator of transposon event? homologous to end region of ISIK mobile genetic element in prokaryotes	potential start codon for betaine aldehyde dehydrogenase in E coli
+					TTGTCGC	conserved loop forming structure in yeast mt tRNA	
+					TTAGC	unknown	
+					AGGTCGATCATGAA	LysR family transcriptional regulator	
+					TTTAATAT	thymidylate synthase consensus sequence in Plasmodium falciparum	
+					TATTACT	Homology of asr nucleotides 270to297 with FNR-binding regions of several FNR-binding proteins in E.coli	
+	EW033_RS03960	NA	Na+/H+ antiporter subunit E	NA	AA	overrepresented dinucleotide in some bacterial species (polymerase slippage?)	
+					CAC	unknown	
+					GAGTGAT	unknown	
+					TATATCA	MarR family TF consensus DNA motif from PBM for Burkholderia xenovorans	
+					AAAACT	one of two LsrR binding boxes in E coli, essential for H2O2 stress response	
+					AAGGA	Shine-Dalgarno	
+					GAGGACTAAATGAA	regulates tryptophan synthase	
+					GTTTTAAA	unknown	
+	EW033_RS04890	NA	hypothetical protein	NA	TC	unknown	
+					GATTA	unknown	
+					TTTAAAT	unknown	
+					AGCGCTTA	unknown	
+					ATAAA	most abundant 5-mer in H influenzae upstream of genes	target adjacent motif for IscB, a reprogrammable RNA-guided DNA endonuclease
+					TGAAGGGGGCA	nitrate metabolism	
+					AGT	unknown	
+					TTACAA	highly conserved -35 box in R ruber PcbiM	
+					TTTCAT	computationally identified as an interesting region in prokaryotes	
+	EW033_RS04895	NA	hypothetical protein	NA	ATTGG	Y-box motif, a cis-element that contains the core sequence ATTGG. For major cold-shock protein of Bacillus subtilis, CspB, is a member of a protein family widespread among prokaryotes and eukaryotes that share the highly conserved cold-shock domain (CSD). The CSD domain is involved in transcriptional and translational regulation 	
+					TACTAC	unknown, matches plasmid consensus seq in S equorum	
+					AT	unknown	
+					AAGCTAATAG	unknown	
+					CTCT	unknown	
+					ATTT	underrepresented tetranucleotide in general	
+					GTAGTT	-35 seq for ctRNA promoter on plasmid	
+					AATTGA	leader peptidase site	
+					TGATCTGTGTA	nitrate metabolism	
+BPH2986	EW031_RS02185	NA	phenol-soluble modulin PSM-alpha-4	pathogenicity	AAA	unknown	
+					GCCAC	unknown	
+					CATCC	unknown	
+					CTATT	unknown	
+					TTCAAT	partial homology to region upstream of etb gene	
+					TAAATTA	part of T7 promoter sequence in bacillus subtilis	part of Tn3 res site
+					TTTTGCG	unknown	
+					AAAAT	match to non-conserved region in SarR binding site (virulence)	
+	EW031_RS12050	NA	membrane protein	membrane hardening?	TAATTAAG	computationally identified as an interesting region in prokaryotes	
+					AAATTAT	part of T7 promoter sequence in bacillus subtilis	part of Tn3 res site
+					TCT	unknown	
+					CAAATAAAT	unknown	
+					CGGAC	partial match to known consensus seq in -35 for clp (involved in heat shock) box	
+					AAATGTTAAA	metJ methionine biosynthesis and transport	
+					ATTT	underrepresented nucleotide in many species	
+					GTTCGATTTTT	metJ methionine biosynthesis and transport	
+	EW031_RS12150	glmS	glutamine--fructose-6-phosphate transaminase (isomerizing)	nitrogen metabolism related pathways	AAT	unknown	
+					GGAAT	unknown	
+					AATTCACTTTTTTA	general repressor	
+					G	not searched	
+					AATCAATCATGTATT	LysR family transcriptional regulator	
+					AAAATTA	part of T7 promoter sequence in bacillus subtilis	part of Tn3 res site
+					CCC	underrepresented nucleotide in many bacteria	
+					TTTTA	C-Terminal coding region of the SPase gene (Yoshikawa et al. 1992). C-Terminal coding and terminator regions of the alkaline protease gene of B. subtilis 1168 (Stahl and Ferrari 1984).	
+					GATTA	unknown	
+	EW031_RS13440	NA	NarK/NasA family nitrate transporter	nitrogen metabolism related pathways	CATT	unknown	
+					GAAAAA	cl mRNA RBS mRNA encoding represser cl of phage X is the only known E.coli message which starts directly with the initiation AUG codon.	
+					ATATG	restriction enzyme site for sacb (sucrose) and lgt (fatty acid)	
+					TAAT	unknown	
+					ACATGCC	unknown	
+					ATTCA	Escherichia coli K-12 yebN MntR binding motif	
+					TTTAGT	(chemical property only) high-affinity aptamer sequence (TTTAGT) that binds the methylphosphonic acid core of nerve agents such as sarin and soman	
+					TAAATA	potential promoter element	present in many SaeR binding sequences
+					CAAAGCCT	unknown	
+					CATGC	induces delay in RNA elongation by Escherichia coli RNA polymerase	
+					ATTC	one part of integron attC recombination site	
+	EW031_RS14390	NA	ATP-dependent Clp protease ATP-binding subunit		TAACGCTT	unknown	
+					CTTTTTTGTTT	represses mannosyl transport, self regulating	
+					AGT	unknown	
+					AAATTTA	HexA template, ridinilazole preference for binding AT sequences in the target DNA binding site	
+					GAGGTGA	Shine-Dalgarno	
+					TATATGAATAACGGT	Member of the two-component regulatory system TorS/TorR involved in the anaerobic utilization of trimethylamine-N-oxide (TMAO)	
