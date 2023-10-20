@@ -17,13 +17,15 @@ We perform an integrated functional and regulatory omics analysis for five Staph
 
 - Mu, A., Klare, W.P., Baines, S.L. *et al*. Integrative omics identifies conserved and pathogen-specific responses of sepsis-causing bacteria. *Nat Commun* **14**, 1530 (2023). [https://doi.org/10.1038/s41467-023-37200-w](https://doi.org/10.1038/s41467-023-37200-w)
 
-*nice flow diagram*
+![](fig/graphical_abstract.png)
 
 # Highlights
 
 - Annotation-free: molecule and gene identity are not required
 - Generic input: only abundance matrices and raw sequence data are required
 - Modular workflow: functional omics and regulatory omics signature are independent but can be merged
+
+![](fig/workflow.png)
 
 ## Identifying molecular-level correlations using functional-omics data integration
 
@@ -46,6 +48,7 @@ We conduct a *de novo* variable-length motif discovery.
 2. Extract promoter regions [-60:+20 TSS] and exonic [+21:101 TSS] regions
 3. Using Natural Language Processing and deep learning, identify features of interest by intercepting classification weights
 4. Perform an automated and manual annotation workflow for motif detection
+
 ## Overlaid functional and regulatory omics layers
 
 Finally, we examine all the results as a whole.
