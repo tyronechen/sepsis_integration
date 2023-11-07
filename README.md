@@ -12,7 +12,7 @@ Code in this repository is provided under a [MIT license](https://opensource.org
 
 [Visit our lab website here.](https://bioinformaticslab.erc.monash.edu/) Contact Sonika Tyagi at [sonika.tyagi@rmit.edu.au](sonika.tyagi@rmit.edu.au).
 
-# Understanding the regulatory grammar of sepsis-causing bacteria using natural language processing and deep learning techniques
+# Understanding the regulatory grammar of sepsis-causing bacteria using contexualised DNA language models
 
 We perform an integrated functional and regulatory omics analysis for five Staphylococcus aureus strains. More information regarding data generation is available in our previous manuscript.
 
